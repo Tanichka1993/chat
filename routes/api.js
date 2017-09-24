@@ -34,7 +34,7 @@ router.get('/users/', function (req, res) {
 
 router.route('/message')
     .post(function (req, res) {
-        connection.query("INSERT INTO  message SET sender = ?, text_message = ?, sended_at = ?",
+        connection.query("INSERT INTO  message SET sender_id = ?, text_message = ?, sended_at = ?",
             [1, req.body.text_message, new Date().toISOString().slice(0, 19).replace('T', ' ')],
             function (err, results) {
                 if (err) throw err;
