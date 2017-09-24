@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 const mysql = require('mysql');
 const connection = mysql.createConnection({
@@ -24,12 +24,19 @@ router.get('/messages/', function (req, res) {
         res.status(200).send(rows);
     });
 });
+router.get('/users/', function (req, res) {
+    connection.query('SELECT id, login, image FROM user',  function (err, rows) {
+        if (err) throw err;
+        console.log('get user');
+        res.status(200).send(rows);
+    });
+});
 
 router.route('/message')
     .post(function (req, res) {
         connection.query("INSERT INTO  message SET sender = ?, text_message = ?, sended_at = ?",
-            [1, req.body.message, new Date().toISOString().slice(0, 19).replace('T', ' ')],
-            function (err, results, fields) {
+            [1, req.body.text_message, new Date().toISOString().slice(0, 19).replace('T', ' ')],
+            function (err, results) {
                 if (err) throw err;
                 return res.send({error: false, data: results, message: 'New message has been created successfully.'});
             });

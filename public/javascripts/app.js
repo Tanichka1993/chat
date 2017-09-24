@@ -1,12 +1,16 @@
 'use strict';
-angular.module('app', ['ngRoute', 'restangular'])
+angular.module('app', ['ngRoute', 'ngMaterial', 'restangular'])
     .config(['$locationProvider', function ($locationProvider) {
         $locationProvider.hashPrefix('');
     }])
+    // .config(function($mdIconProvider) {
+    //     $mdIconProvider
+    //         .iconSet('communication', 'img/icons/sets/communication-icons.svg', 24);
+    // })
     .config(function ($routeProvider) { //Створюєм адреси
         $routeProvider
             .when('/', {
-                templateUrl: './template/message.tpl.html',
+                templateUrl: './template/homePageDirective.tpl.html',
                 controller: HomePageController,
                 controllerAs: 'homePageCtrl'
             })
@@ -14,21 +18,26 @@ angular.module('app', ['ngRoute', 'restangular'])
                 redirectTo: '/'
             });
     })
-    .service('messageDataService', function (Restangular) {
+    .service('MessageDataService', function (Restangular) {
         return {
             getMessages: getMessages
         };
 
         function getMessages() {
-            return Restangular.all('api/message').getList()
+            return Restangular.all('api/messages').getList()
+        }
+    })
+    .service('UserDataService', function (Restangular) {
+        return {
+            getUsers: getUsers
+        };
+
+        function getUsers() {
+            return Restangular.all('api/users').getList()
         }
     })
     .controller('MainCtrl', function ($scope) {
-        // $http.get('http://localhost:8000/login').then(function successCallback(response) {
-        //     $scope.arr = response.data;
-        // }, function errorCallback(response) {
-        //     console.log("Error!!!" + response.err);
-        // });
+
     })
     .directive('homePage', function () {
         return {
@@ -41,57 +50,42 @@ angular.module('app', ['ngRoute', 'restangular'])
             scope: {}
         }
     })
-    .directive('message', function () {
+    .directive('messages', function () {
         return {
             replace: true,
-            templateUrl: 'template/message.tpl.html',
+            templateUrl: 'template/messages.tpl.html',
             controllerAs: 'messagesCtrl',
-            controller: function ($scope, messageDataService) {
-                const vm = this;
-                vm.messages = [];
+            controller: function ($scope, UserDataService, MessageDataService) {
+                const self = this;
+                self.messages = [];
+                self.users = [];
+                self.getUserById = getUserById;
 
-                messageDataService.getMessages().then(function (messages) {
-                    vm.messages = messages ;
-                })
+
+                UserDataService.getUsers().then(function (users) {
+                    self.users = users;
+                });
+                MessageDataService.getMessages().then(function (messages) {
+                    self.messages = messages;
+                });
+
+                function getUserById(user_id) {
+                        for(let i = 0; i < self.users.length; i++ ){
+                            if (self.users[i].id === user_id){
+                                return self.users[i]
+                            }
+                        }
+                    }
+                }
             }
-        }
     })
-    .directive('popularSubCategories', function () {
+    .directive('registration', function () {
         return {
             replace: true,
-            templateUrl: 'template/popularSubCategories.tpl.html',
+            templateUrl: 'template/registration.tpl.html',
             controller: function ($scope) {
             }
         }
-    })
-    .directive('popularGoods', function () {
-        return {
-            replace: true,
-            templateUrl: 'template/popularGoods.tpl.html',
-            link: function (scope, element, attrs) {
-            }
-        }
-    })
-    .directive('asideInfo', function () {
-        return {
-            replace: true,
-            templateUrl: 'template/asideInfo.tpl.html',
-            link: function (scope, element, attrs) {
-            }
-        }
     });
-
 function HomePageController($scope) {
-    $scope.a = 'bbbbbb';
 }
-
-
-// .directive('slider', function () {
-//     return {
-//         replace: true,
-//         templateUrl: 'template/slider.html',
-//         link: function (scope, element, attrs) {
-//         }
-//     }
-// });
-

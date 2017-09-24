@@ -1,0 +1,27 @@
+<div class="wrap_messages" data-layout="column">
+    <div ng-cloak class="messages" layout-gt-sm="row" layout="column" flex>
+        <md-content>
+            <md-list>
+                <md-list-item class="md-3-line" ng-repeat="message in messagesCtrl.messages" ng-click="null">
+                    <div class="first-block">
+                        <img ng-src="{{messagesCtrl.getUserById(message.sender_id).image}}" class="md-avatar" alt="">
+                        <p>{{messagesCtrl.getUserById(message.sender_id).login}}</p>
+                    </div>
+                    <div class="md-list-item-text" layout="column">
+                        <p>{{ message.text_message }}</p>
+                    </div>
+                </md-list-item>
+                <md-divider></md-divider>
+
+
+                <!--<ul class="messages">-->
+                <!--<li ng-repeat="message in messagesCtrl.messages">-->
+                <!--{{message.sender_id}}<div style="font-size: large">{{message.text_message}}</div>-->
+                <!--</li>-->
+                <!--</ul>-->
+    </div>
+    <div id="text" data-layout="row" class="send-message-box">
+        <input type="text" placeholder="Enter message" flex>
+        <button><span>Send</span></button>
+    </div>
+</div>

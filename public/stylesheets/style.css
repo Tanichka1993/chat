@@ -1,4 +1,192 @@
-.wrap{
-  padding-left: 50px;
-  border-left: 5px dashed #3c3c3c;
+main {
+    padding-top: 50px;
+    height: 900px;
+}
+
+.wrap {
+    width: 95%;
+    height: 100%;
+    background: url("../images/mybgr.png");
+/ / no-repeat border: 2 px solid white;
+    border-radius: 10%
+}
+
+.main_content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+body, html {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 18px;
+    background-image: url("../images/polygon-background-6912.jpeg");
+    scrollbar-3dlight-color: white;
+    scrollbar-arrow-color: white;
+}
+
+.registration {
+    padding: 25px;
+
+}
+
+.registration.register-form {
+    border-radius: 2%;
+    position: absolute;
+}
+
+.registration .register-form {
+    font-size: 16px;
+}
+
+.registration .register-form label {
+    color: aliceblue;
+
+}
+
+.registration .register-form input {
+    padding: 15px;
+    margin: 15px;
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.registration .regbutton {
+    height: 50px;
+    width: 100px;
+    background-color: darkgrey;
+    border-radius: 10px;
+    font-size: 18px;
+    color: white;
+    border: none !important;
+    margin-bottom: 5px;
+    background-image: inherit;
+}
+
+.registration .regbutton:hover {
+    color: white;
+    background-color: lightgrey;
+}
+
+.registration .regbutton:active {
+    color: blanchedalmond;
+    background-color: white;
+}
+
+.registration .logbutton {
+    height: 50px;
+    width: 100px;
+    background-color: darkorange;
+    border-radius: 10px;
+    font-size: 18px;
+    color: white;
+    border: none !important;
+    margin-bottom: 5px;
+    background-image: inherit;
+}
+
+.registration .logbutton:hover {
+    color: white;
+    background-color: orange;
+}
+
+.registration .logbutton:active {
+    color: white;
+    background-color: darkolivegreen;
+}
+
+.registration .row {
+    margin-left: 0;
+}
+
+.my-account {
+    background-color: rgba(235, 233, 233, 0.7);
+    /*background: url("../images/mybgr2.jpg");*/
+    border-radius: 10px;
+    padding: 10px;
+    margin: 30px;
+}
+
+.wrap_messages {
+    margin: 50px;
+    padding: 10px;
+}
+
+
+.wrap_messages .messages {
+    border: 2px solid white;
+    border-radius: 138px 161px 178px 0;
+    background-color: rgba(235, 233, 233, 0.7);
+}
+
+.wrap_messages .send-message-box {
+    margin: 10px;
+}
+.wrap_messages .first-block {
+    position: absolute;
+    width: 200px;
+    height: 60px;
+    background-color: white;
+    border-radius: 200px 43px 43px 200px;
+    padding: 5px;
+}
+
+.wrap_messages .md-list-item-text p {
+    font-style: normal;
+    font-size: medium;
+    background-color: rgba(255,165,0, 0.7);
+    /*background-color: rgba(241, 105, 8, 0.9);*/
+    border-radius: 138px 161px 178px 0;
+min-height: 41px;
+width: 90%;
+padding-left: 50px;
+}
+.listdemoBasicUsage md-divider {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.md-content.md-default-theme, md-content {
+    background-color: inherit;
+}
+
+md-content._md {
+    width: 100%;
+    margin: 20px;
+    border-radius: 138px 161px 178px 0;
+}
+
+.md-list-item-inner {
+    padding: 25px;
+}
+
+#text input {
+    border-radius: 30px;
+    /*width: 75%;*/
+    color: black;
+    padding: 10px;
+    background-color: lightgrey;
+    border: none;
+}
+
+#text button {
+    background-color: darkorange;
+    border-radius: 30px;
+    width: 100px;
+    padding: 10px;
+    margin-left: 10px;
+    border: none;
+}
+
+#text button span {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 18px;
+    color: white;
+}
+
+
+.md-list-item-text {
+    position: relative;
+    left: 50px;
 }
