@@ -16,4 +16,4 @@ CREATE TABLE IF NOT EXISTS message (
   text_message VARCHAR(255) NOT NULL ,
   PRIMARY KEY (id),
   FOREIGN KEY (sender_id) REFERENCES  user (id)
-)
+);
