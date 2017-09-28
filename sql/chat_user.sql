@@ -1,1 +1,1 @@
-INSERT INTO chat.user (login, password_hash, image) VALUES ('login', 'pass', 'images\\noavatar.png');
+INSERT INTO chat.user (login, password_hash, image) VALUES ('anonymous', 'pass', 'images\\noavatar.png');

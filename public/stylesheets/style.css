@@ -203,3 +203,38 @@ md-content._md {
 .home-page {
     height: 100%;
 }
+
+/*@media (max-width: 1200px) {*/
+    /*.registration {*/
+        /*width: 30%;*/
+    /*}*/
+
+    /*@media (max-width: 900px) {*/
+        /*.registration {*/
+            /*width: 50%;*/
+        /*}*/
+
+        /*.row img {*/
+            /*width: 200px;*/
+            /*heigth: 200px;*/
+        /*}*/
+    /*}*/
+
+    /*@media (max-width: 768px) {*/
+
+    /*}*/
+    /*@media (max-width: 620px) {*/
+
+    /*}*/
+    /*@media (max-width: 480px) {*/
+        /*.registration, .wrap_messages {*/
+            /*width: 100%;*/
+        /*}*/
+
+        /*.row img {*/
+            /*width: 200px;*/
+            /*heigth: 200px;*/
+        /*}*/
+    /*}*/
+
+/*}*/

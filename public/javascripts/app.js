@@ -27,21 +27,26 @@ angular.module('app', ['ngRoute', 'ngMaterial', 'restangular'])
         function getMessages() {
             return Restangular.all('api/messages').getList()
         }
-        
+
         function addMessage(text_message) {
-            Restangular.all('api/message').post({'text_message': text_message})
+            return Restangular.all('api/message').post({'text_message': text_message})
         }
     })
     .service('UserDataService', function (Restangular) {
         return {
-            getUsers: getUsers
+            getUsers: getUsers,
+            addUser: addUser,
         };
 
         function getUsers() {
             return Restangular.all('api/users').getList()
         }
+
+        function addUser(login, password, image) {
+            return Restangular.all('api/user').post({'login': login, 'password': password, 'image': image})
+        }
     })
-    .controller('MainCtrl', function ($scope) {
+    .controller('MainCtrl', function ($scope, $http) {
 
     })
     .directive('homePage', function () {
@@ -65,7 +70,7 @@ angular.module('app', ['ngRoute', 'ngMaterial', 'restangular'])
                 self.messages = [];
                 self.users = [];
                 self.newMessage = '';
-                
+
                 self.getUserById = getUserById;
                 self.sendMessage = sendMessage;
 
@@ -78,17 +83,32 @@ angular.module('app', ['ngRoute', 'ngMaterial', 'restangular'])
                 }
 
                 function sendMessage() {
-                    MessageDataService.addMessage(self.newMessage)
+                    MessageDataService.addMessage(self.newMessage).then(
+                        function () {
+                            self.newMessage = '';
+                        }
+                    )
                 }
 
-                $interval(function () {
+                function init() {
                     UserDataService.getUsers().then(function (users) {
                         self.users = users;
                     });
                     MessageDataService.getMessages().then(function (messages) {
                         self.messages = messages;
                     });
-                }, 1000)
+                }
+
+                init();
+
+                $interval(function () {
+                    // UserDataService.getUsers().then(function (users) {
+                    //     self.users = users;
+                    // });
+                    MessageDataService.getMessages().then(function (messages) {
+                        self.messages = messages;
+                    });
+                }, 2000)
             }
 
         }
@@ -97,10 +117,21 @@ angular.module('app', ['ngRoute', 'ngMaterial', 'restangular'])
         return {
             replace: true,
             templateUrl: 'template/registration.tpl.html',
-            controller: function ($scope) {
+            controllerAs: 'registrationCtrl',
+            controller: function (UserDataService) {
+                const self = this;
+                self.login = '';
+                self.password = '';
+                self.register = register;
+
+                function register() {
+                    UserDataService.addUser(self.login, self.password, '')
+                }
+
             }
         }
     });
+
 
 function HomePageController($scope) {
 }

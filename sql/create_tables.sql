@@ -2,7 +2,7 @@ USE chat;
 
 CREATE TABLE IF NOT EXISTS user (
   id            INT          NOT NULL AUTO_INCREMENT,
-  login         VARCHAR(50)  NOT NULL,
+  login         VARCHAR(50)  NOT NULL UNIQUE,
   password_hash VARCHAR(255) NOT NULL,
   image         VARCHAR(255),
 
